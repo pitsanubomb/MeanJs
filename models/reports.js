@@ -29,3 +29,7 @@ module.exports.getReport = function(reportname, callback){
 module.exports.addReport = function(newReport, callback){
   newReport.save(callback);
 }
+
+module.exports.reportAll = function(reports){
+  Report.find(reports);
+}

@@ -22,6 +22,17 @@ router.post('/form', (req, res, next) => {
   });
 });
 
+router.get('/view', function(req, res) {
+  Report.reportAll((err, report) => {
+    if(err) throw err;
+    if(!report){
+      return res.json({success: false, msg: 'Report not found'});
+    }else{
+      res.json(report);
+    }
+});
+});
+
 router.get('/view/:reportName', function(req, res) {
   console.log("view report" + req.params.reportName);
   const repname =  req.params.reportName;
@@ -30,7 +41,7 @@ router.get('/view/:reportName', function(req, res) {
     if(!report){
       return res.json({success: false, msg: 'Report not found'});
     }else{
-      // res.json({success:true,})
+      res.json({success:true, msg: 'Report is good!'})
       console.log(report.id);
     }
 });
